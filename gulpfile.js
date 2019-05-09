@@ -20,10 +20,10 @@ gulp.task('browser-sync', function() {
 
 //STYLES
 gulp.task('styles', function () {
-  return gulp.src('./scss/styles.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./dist'))
-    .pipe(browserSync.stream());
+    return gulp.src('./scss/styles.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./dist'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('code', function() {
@@ -33,21 +33,30 @@ gulp.task('code', function() {
 
 //CONVERTE INKY
 gulp.task('inky', gulp.series('styles', function() {
-  return gulp.src('./templates/**/*.html')
-    .pipe(inlinesource())
-    .pipe(inky())
-    .pipe(inlineCss({
-        preserveMediaQueries: true
-    }))
-    .pipe(gulp.dest('./dist'))
-    .pipe(browserSync.reload({ stream: true }));
+    return gulp.src('./templates/**/*.html')
+        .pipe(inlinesource())
+        .pipe(inky())
+        .pipe(gulp.dest('./dist'))
 }));
+
+//INLINE STULES
+gulp.task('inline', gulp.series('inky', function() {
+    return gulp.src('./dist/**/*.html')
+        .pipe(inlineCss({
+            preserveMediaQueries: true,
+            removeLinkTags: false
+        }))
+        .pipe(gulp.dest('./dist'))
+        .pipe(browserSync.reload({ stream: true }));
+}));
+
 
 //WATCH
 gulp.task('watch',function() {
     gulp.watch('./scss/**/*.scss', gulp.parallel('inky'));
     gulp.watch('./templates/**/*.html', gulp.parallel('inky'));
-    gulp.watch('./templates/**/*.html', gulp.parallel('code'))
+    gulp.watch('./templates/**/*.html', gulp.parallel('code'));
+    gulp.watch('./templates/**/*.html', gulp.parallel('inline'))
 });
 
 gulp.task('default', gulp.parallel('watch', 'browser-sync'));

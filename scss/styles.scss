@@ -3,6 +3,20 @@
 //colors:
 $accent: #F61067;
 
+.no-bg {
+  background-color: transparent!important;
+}
+
+.no-paddings {
+  .first {
+    padding-left: 0!important;
+  }
+
+  .last {
+    padding-right: 0!important;
+  }
+}
+
 .change-order {
   .first {
     padding-left: 10px!important;
@@ -13,4 +27,8 @@ $accent: #F61067;
     padding-left: 20px!important;
     padding-right: 10px;
   }
+}
+
+@media only screen and (max-width: 596px) {
+  /**/
 }
