@@ -1381,6 +1381,15 @@ body.outlook p {
   padding-top: 16px;
   padding-bottom: 16px; }
 
+.no-bg {
+  background-color: transparent !important; }
+
+.no-paddings .first {
+  padding-left: 0 !important; }
+
+.no-paddings .last {
+  padding-right: 0 !important; }
+
 .change-order .first {
   padding-left: 10px !important;
   padding-right: 20px; }
@@ -1388,3 +1397,6 @@ body.outlook p {
 .change-order .last {
   padding-left: 20px !important;
   padding-right: 10px; }
+
+@media only screen and (max-width: 596px) {
+  /**/ }
