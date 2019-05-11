@@ -59,7 +59,6 @@ $button-rounded: $global-rounded !default;
 table.button {
   width: auto !important;
   margin: $button-margin;
-  Margin: $button-margin;
 
   table {
 
@@ -67,11 +66,7 @@ table.button {
       text-align: left;
       color: $button-color;
       background: $button-background;
-      border: 2px solid $button-background;
-
-      &.radius {
-        border-radius: $button-radius;
-      }
+      //border: 2px solid $button-background;
 
       &.rounded {
         border-radius: $button-rounded;
@@ -86,6 +81,14 @@ table.button {
         display: inline-block;
         padding: map-get($button-padding, default);
         border: 0px solid $button-background;
+        border-radius: $button-radius;
+      }
+    }
+  }
+
+  &.radius {
+    table {
+      td {
         border-radius: $button-radius;
       }
     }

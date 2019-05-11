@@ -53,10 +53,8 @@ gulp.task('inline', gulp.series('inky', function() {
 
 //WATCH
 gulp.task('watch',function() {
-    gulp.watch('./scss/**/*.scss', gulp.parallel('inky'));
-    gulp.watch('./templates/**/*.html', gulp.parallel('inky'));
-    gulp.watch('./templates/**/*.html', gulp.parallel('code'));
-    gulp.watch('./templates/**/*.html', gulp.parallel('inline'))
+    gulp.watch('./scss/**/*.scss', gulp.parallel('inky', 'code', 'inline'));
+    gulp.watch('./templates/**/*.html', gulp.parallel('inky', 'code', 'inline'));
 });
 
 gulp.task('default', gulp.parallel('watch', 'browser-sync'));
